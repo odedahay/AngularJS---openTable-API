@@ -1,7 +1,7 @@
 {
-  "name": "npm-test",
+  "name": "OpenTable API",
   "version": "0.1.0",
-  "description": "Simple application to learn about npm",
+  "description": "Mbile responsive restaurant table reservation system in AngularJS",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
