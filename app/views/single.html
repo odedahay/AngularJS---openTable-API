@@ -1,0 +1,19 @@
+
+
+<div class="row">
+
+   <div class="col-lg-6">
+   	  <img ng-src="{{restaurant.image_url}}" alt="{{restaurant.name}}" style="width: 100%">
+      
+   </div>
+   <div class="col-lg-6">
+   	<h1 class="text-resto-name">{{restaurant.name}}</h1>
+   	<ul class="list-unstyled pb20">
+   		
+		<li>Address: {{restaurant.address}}, </li>
+		<li >{{restaurant.city}}, {{restaurant.postal_code}}</li>
+		<li >Tel. #: {{restaurant.phone}}</li>
+   	</ul>
+      <p><a href="#/restaurant" class="btn btn-warning">Go Back</a> <a href="#" class="btn btn-danger">Book a Table</a></p>
+   </div>
+</div>

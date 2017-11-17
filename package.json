@@ -1,0 +1,17 @@
+{
+  "name": "npm-test",
+  "version": "0.1.0",
+  "description": "Simple application to learn about npm",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rodelio Dahay",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.7.2",
+    "body-parser": "~1.5.2",
+    "lodash": "^4.17.4"
+  }
+}

@@ -1,0 +1,51 @@
+
+<div class="jumbotron">
+   <!--  <div class="col-md-12 "> -->
+        <h3>Search Restaurant by City</h3>
+        <br/>
+        <form class="form-inline">
+	        <div class="form-group">
+	            <input type="text" id="boston" ng-model="city" class="form-control" placeholder="New York" />
+	        </div>
+	       	
+	        <button type="submit" class="btn btn-success" ng-click="gotoCity(city)">Find a Restaurant</button>
+    	</form>
+   <!--  </div> -->
+</div>
+
+<h4 ng-hide="!!!result.restaurants.length" class="text-center">Nearest in {{city | capitalize}}</h4>
+
+<!--  <div ng-if="!result.restaurants.length">
+   <p class="text-center">Loading...</p>
+</div> -->
+
+<div ng-if="noresult.restaurants == 0 ">
+	<div class="alert alert-danger" role="alert">
+  		<h4 class="text-center">Sorry! "{{city | capitalize}}" is not Available</h4>
+	</div>
+</div> 
+<div ng-repeat="city in result.restaurants">
+	
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				 <div class="panel-body">
+					<div class="col-md-8">
+
+						<h4 class="resto-name">{{ city.name }}</h4>
+						<p> {{ city.address }}<br>{{ city.postal_code }}</p>
+						<button class="btn btn-info" ng-click="gotoRestaurant(city.id)">Visit</button>
+					</div>
+					<div class="col-md-4 img-gallery">
+						<img ng-src="{{city.image_url}}" alt="{{ city.name }}" ng-click="gotoRestaurant(city.id)" class="show-cursor" >	
+					</div>
+				</div>
+			</div>	
+
+		</div>
+	</div>
+</div>
+	
+
+	
