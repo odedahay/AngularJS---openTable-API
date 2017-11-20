@@ -1,22 +1,39 @@
 
 var app = angular.module("restaurantApp", ['ngRoute']);
 
-
 // routes
 app.config(function($routeProvider) {
 
     $routeProvider
-
-    .when("/city/:city", {
-
-        templateUrl : "./views/main.html",
-        controller : "searchRestaurant"
-    })
-    .when("/restaurants/:id", {
-        templateUrl : "./views/single.html", 
-        controller : "singleRestaurant"
-    })
-    .otherwise( { redirectTo: '/city/New York' } );
+      .when("/city/:city", {
+          templateUrl : "./views/main.html",
+          controller : "searchRestaurant"
+      })
+      .when("/restaurants/:id", {
+          templateUrl : "./views/single.html", 
+          controller : "singleRestaurant"
+      })
+      .when("/restaurants/r/:id", {
+        templateUrl: "./views/reservations.html",
+        controller: "reservationsCtrl"
+      })
+      .when("/restaurants/r/book/", {
+        templateUrl: "./views/booking.html",
+        controller: "reservationsDetailsCtrl"
+      })
+      // .when("/restaurants/add", {
+      //   templateUrl: "./views/booking.html",
+      //   controller: "reservationsDetailsCtrl"
+      // })
+      .when("/restaurants/list/summary", {
+        templateUrl: "./views/summary.html",
+        controller: "summaryListCtrl"
+      })
+      // .when("/restaurants/summary/edit/:id", {
+      //   templateUrl: "./views/summary_add.html",
+      //   controller: "summaryListAddCtrl"
+      // })
+      .otherwise( { redirectTo: '/city/New York' } );
 
 });
 
@@ -26,7 +43,7 @@ app.factory('GetData', function ($http) {
 
   return {
     OpenTableService: function (city, inputCity, response) {
-        var urlLink = "http://opentable.herokuapp.com/api/restaurants?&country=US&"+city+"="+inputCity+"&per_page=10";
+        var urlLink = "https://opentable.herokuapp.com/api/restaurants?&country=US&"+city+"="+inputCity+"&per_page=10";
         $http.get(urlLink).success(response);
     }
   }
@@ -39,7 +56,7 @@ app.factory('GetData_details', function ($http) {
 
   return {
     OpenTableServiceSingle: function (type, id, response) {
-        var urlLink = "http://opentable.herokuapp.com/api/"+type+"/"+id;
+        var urlLink = "https://opentable.herokuapp.com/api/"+type+"/"+id;
         $http.get(urlLink).success(response);
     }
   }
@@ -56,12 +73,9 @@ app.controller('searchRestaurant', function($scope, GetData, $routeParams, $rout
       $scope.result = response;
 
       if ($scope.result.total_entries == 0){
-      		
       		$scope.noresult = response;
-      
       }
-
-      console.log("not found", $scope.result);
+      
     });
 
     // redirect to page
@@ -78,27 +92,22 @@ app.controller('searchRestaurant', function($scope, GetData, $routeParams, $rout
 
 
 // controller
-app.controller('singleRestaurant', function($scope, GetData_details, $routeParams, $filter) {
+app.controller('singleRestaurant', function($scope, GetData_details, $routeParams, $filter, dataShare) {
 
-	 GetData_details.OpenTableServiceSingle('restaurants', $routeParams.id,function(response) {
+	 GetData_details.OpenTableServiceSingle('restaurants', $routeParams.id, function(response) {
         $scope.restaurant = response;
+        
+        $scope.restoData = {
+          id: $scope.restaurant.id,
+          name: $scope.restaurant.name
+        };
+        
+        //pass the json object to the service
+        $scope.send = function(){
+          dataShare.sendData($scope.restoData);
+        };
     });
-
-	// var cityId = $routeParams.id;
-
- //    GetData.OpenTableServiceSingle('restaurants', $routeParams.id,function(response) {
-
- //     	var data = response;
- //     	console.log("data", data );
- //     	$scope.restaurant = $filter('filter')(data, function(d) {
- //     		console.log("d", d.id);
- //        	return d.id == cityId;
- //        })[0];
-     	
- //     	console.log("restaurant", $scope.restaurant );
- //    });
 });
-
 
 
 app.filter('capitalize', function() {
@@ -107,8 +116,9 @@ app.filter('capitalize', function() {
     }
 });
 
-
-
+// app.service('restaurantData', function(data){
+//   this.restoData = data;
+// });
 
 //http://opentable.herokuapp.com/api/restaurants?country=US&city=boston&per_page=100
 

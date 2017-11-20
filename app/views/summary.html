@@ -1,0 +1,39 @@
+<div ng-controller = "summaryListCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="heading">Summary</h3>
+      <hr />
+      <div class="summaries">
+        
+        
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Restaurant Name</th>
+                <th>Date</td>
+                <th>Time</th>
+                <th>No. of People</th>
+                <th>Reserved To</th>
+                <th>Contact No.</th>
+              </tr>
+            </thead>
+          
+            <tbody ng-repeat="summary in summaries">
+              
+              <tr>
+                <td>{{summary.restaurant_name}}</td>
+                <td>{{summary.date}}</td>
+                <td>{{summary.time}}</td>
+                <td>{{summary.people}}</td>
+                <td>{{summary.name}}</td>
+                <td>{{summary.contact}}</td>
+              </tr>
+              
+            </tbody>
+            
+          </table>
+      
+      </div>
+    </div>
+  </div>
+</div>

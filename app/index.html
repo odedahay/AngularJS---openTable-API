@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="restaurantApp">
   <head>
     <meta charset="utf-8">
 
@@ -9,44 +9,62 @@
     <meta name="author" content="">
     <link rel="icon" href="./img/favicon.ico">
 
-    <title>@Find Restaurant</title>
+    <title>Find Restaurant</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/custom.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Anton');
+    </style>
+    
+  </head>
 
+  <body>
+    
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="#"> -->
+              <h3 class="text-logo">Find Restaurant</h3>
+            <!-- </a> -->
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+          
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#/city">Home <span class="sr-only">(current)</span></a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <div ng-view></div>
+      
+    
+      <footer class="footer">
+        <hr />
+        <p>&copy; 2017 Assignment</p>
+      </footer>
+        
+    </div> <!-- /container -->
+
+    
     <!-- AngularJs -->
     <script src="./lib/angular.min.js"></script>
     <script src="./lib/angular-route.min.js"></script>
-
-  </head>
-
-  <body ng-app="restaurantApp">
-
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#/city">Home</a></li>
-           
-          </ul>
-        </nav>
-        <h3 class="text-logo">@Find Restaurant</h3>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-md-12">
-          <div ng-view></div>
-        </div>
-      </div>
-
-      <footer class="footer">
-        <p>&copy; 2017 Assignment</p>
-      </footer>
-
-    </div> <!-- /container -->
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
     <script src="./index.js"></script>
+    <script src="/controllers/reservations_controller.js"></script>
     
   </body>
 </html>
