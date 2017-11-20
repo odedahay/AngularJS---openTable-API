@@ -17,7 +17,7 @@ app.config(function($routeProvider) {
         templateUrl: "./views/reservations.html",
         controller: "reservationsCtrl"
       })
-      .when("/restaurants/r/book/", {
+      .when("/restaurants/r/book", {
         templateUrl: "./views/booking.html",
         controller: "reservationsDetailsCtrl"
       })
@@ -115,10 +115,6 @@ app.filter('capitalize', function() {
       return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 });
-
-// app.service('restaurantData', function(data){
-//   this.restoData = data;
-// });
 
 //http://opentable.herokuapp.com/api/restaurants?country=US&city=boston&per_page=100
 

@@ -18,11 +18,11 @@
               </tr>
             </thead>
           
-            <tbody ng-repeat="summary in summaries">
+            <tbody>
               
-              <tr>
+              <tr ng-repeat="summary in summaries | orderBy: 'created_at':true">
                 <td>{{summary.restaurant_name}}</td>
-                <td>{{summary.date}}</td>
+                <td>{{summary.date | date:'dd-MM-yyyy'}}</td>
                 <td>{{summary.time}}</td>
                 <td>{{summary.people}}</td>
                 <td>{{summary.name}}</td>

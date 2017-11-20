@@ -6,7 +6,7 @@ angular.module("restaurantApp")
     });
 }])
 
-.controller('reservationsCtrl', ['$scope', '$http', '$routeParams','dataShare', function($scope, $http, $routeParams, dataShare) {
+.controller('reservationsCtrl', ['$scope', '$http', '$routeParams','dataShare', '$location', 'GetData_details', function($scope, $http, $routeParams, dataShare, $location, GetData_details) {
 
       $http.get('/reservations/restaurant/' + $routeParams.id).success(function(data) {
           $scope.reservation = data;
@@ -21,18 +21,46 @@ angular.module("restaurantApp")
               return reserved != $scope.reservation[0].time;
             })
           }
-          
-          $scope.restoData = '';
-          $scope.$on('data_shared',function(){
-              var text =  dataShare.getData();    
-              $scope.restoData = text;
-          });
-          
-          console.log("Heyyy", $scope.restoData);
-          
+        
         }).error(function(err){
           console.log("Error",err);
       });
+      
+      GetData_details.OpenTableServiceSingle('restaurants', $routeParams.id, function(response) {
+           $scope.restaurant = response;
+           
+           $scope.restaurant_id = $scope.restaurant.id;
+           $scope.restaurant_name = $scope.restaurant.name;
+      
+           // $scope.restoData = {
+           //     id: $scope.restaurant.id,
+           //     name: $scope.restaurant.name
+           //   };
+       });
+    
+      // get the value from forms
+      $scope.reserveTableAvailable = function(){
+        
+        var data = {
+          people: $scope.people,
+          date: $scope.date,
+          time: $scope.timeslot,
+          name: $scope.name,
+          contact: $scope.contact,
+          email: $scope.email,
+          restaurant_id: $scope.restaurant.id,
+          restaurant_name: $scope.restaurant.name
+        }
+        
+        console.log("Gee!", data);
+        
+        $http.post('/reservations/restaurants/r/book/', data).success(function(data, status) {
+          console.log(status)
+        });
+        
+        $location.path('/restaurants/list/summary');
+        
+      }
 }])
 
 .factory('dataShare',function($rootScope){

@@ -5,46 +5,56 @@
           <h3 class="heading">Make Reservation</h3>
             <hr />
           
-            <form ng-submit="findTableAvailable()">
+            <form ng-submit="reserveTableAvailable()">
               <div class="form-group">
                 <label>Number of People</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <select class="form-control" ng-model="people" name="people">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
             </div>
             <div class="form-group">
-              <label>Reservation Date</label>
+              <label>Date of Event</label>
               <input type="date" class="form-control" ng-model="date" name="date" placeholder="Enter Date">
             </div>
             
             <div class="form-group">
-              <label>Reservation Time</label>
-               <select class="form-control" ng-model="time" name="time">
-                
+              <label>Availabel Time</label>
+               <select class="form-control" ng-model="timeslot" name="timeslot">
              	 <option ng-repeat="timeslot in availableTime" value="{{timeslot}}">{{timeslot}}</option>
              </select>
            </div>
-            
-            <button type="submit" class="btn btn-primary">Find a Table</button>
+           
+           <hr />
+           
+           <h3>Personal Details</h3>
+           <div class="form-group">
+             <label>Name</label>
+             <input type="text" class="form-control" ng-model="name" name="name" placeholder="Enter Name">
+           </div>
+           
+           <div class="form-group">
+             <label>Contact Number</label>
+             <input type="text" class="form-control" ng-model="contact" name="contact" placeholder="Enter Contact Number">
+           </div>
+           
+           <div class="form-group">
+             <label>Email Address</label>
+             <input type="text" class="form-control" ng-model="email" name="email" placeholder="Enter Email Address">
+           </div>
+
+           <input type="hidden" ng-model="restaurant_id" name="restaurant_id" >
+           <input type="hidden" ng-model="restaurant_name" name="rrestaurant_name" >
+           
+            <br />
+            <button type="submit" class="btn btn-primary">Submit Reservation</button>
             <a class="btn btn-danger" href="#/restaurants/">Cancel</a>
             
           </form>
-            
-            <!-- <div class="form-group">
-              <label>Category</label>
-             <select class="form-control" ng-model="category" name="category">
-             	<option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-             </select>
-            </div>
-            <div class="form-group">
-              <label>Body Text</label>
-              <textarea class="form-control" ng-model="body" name="body" placeholder="Enter Article Body"></textarea>
-            </div> -->
-      
+          
     </div>
   </div>
 </div>
