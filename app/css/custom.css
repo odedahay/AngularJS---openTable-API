@@ -3,15 +3,28 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+html, body, input, select, textarea{
+      font-size: 1.05em !important;
+}
+
+input.searchbar {
+  width: 500px!important;
+  height: 50px;
+}
+.searchbar_list {
+  width: 150px!important;
+  height: 50px;
+}
+
+.searchBtn{
+  height: 50px;
+}
 
 .navbar {
   margin-bottom: 20px;
 }
 
-html, body, input, select, textarea
-  {
-      font-size: 1.05em !important;
-  }
+
 .show-cursor{
   cursor: pointer;
 }
@@ -46,4 +59,17 @@ h1.text-resto-name{
 .footer{
   padding-top: 50px;
 }
+@media screen and (max-width: 900px) and (min-width: 768px){
+  input.searchbar{
+      width: 420px!important;
+    }
 
+}
+
+@media screen and (max-width: 699px) and (min-width: 330px){
+
+input.searchbar{
+    width: 100%!important;
+  }
+
+}

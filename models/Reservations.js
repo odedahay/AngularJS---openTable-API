@@ -3,41 +3,35 @@ var Schema = mongoose.Schema;
 
 var TableBookSchema = new Schema({
   people: {
-    type: Number, 
+    type: Number,
     index: true,
-    default: 0
+    default: 1
   },
   date: {
     type: String,
     required: true
   },
   time: {
-    type:String,
-    index: true,
-    required: true,
+    type : String,
+    required: true
   },
   name: {
     type:String,
-    index: true,
-    required: true,
+    required: true
   },
   contact: {
-    type:String,
-    required: true,
+    type:String
   },
   email: {
     type:String,
-    unique: true,
-    required: true,
+    required: true
   },
   restaurant_id: {
     type:String,
+    index: true,
   },
   restaurant_name: {
-    type:String,
-  },
-  country: {
-    type:String,
+    type:String
   }
 });
 
@@ -65,7 +59,7 @@ module.exports.getBookingUser = function(user){
   Reservation.find(query, callback);
 }
 
-// Reserved a confirm Booking Table 
+// Reserved a confirm Booking Table
 module.exports.createBooking = function(newBooking, callback) {
     newBooking.save(callback);
 }
@@ -78,9 +72,9 @@ module.exports.updateTableBooking = function(id, data, callback) {
   var name = data.name;
   var contact = data.contact;
   var email = data.email;
-  
+
   var query = { _id: id};
-  
+
   Reservation.findById(id, function(err, reservation) {
     if(!reservation){
       return next(new Error('Could not load article'));
@@ -91,7 +85,7 @@ module.exports.updateTableBooking = function(id, data, callback) {
       reservation.name    = name;
       reservation.contact = contact;
       reservation.email   = email;
-      
+
       // Save data
       reservation.save(callback);
     }
@@ -99,18 +93,6 @@ module.exports.updateTableBooking = function(id, data, callback) {
 }
 
 // Delete Reservations
-module.exports.removeReservation = function(id, callback) {
+module.exports.removeData = function(id, callback) {
   Reservation.find({_id: id}).remove(callback);
 }
-
-
-
-
-
-
-
-
-
-
-
-

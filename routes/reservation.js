@@ -20,7 +20,6 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-
 router.get('/restaurant/:restaurant_id', function(req, res, next) {
   Reservation.getRestaurantById(req.params.restaurant_id, function(err, restaurantId) {
     if(err){
@@ -39,11 +38,10 @@ router.post('/restaurants/r/book/', function(req, res, next) {
   var email = req.body.email;
   var restaurant_id = req.body.restaurant_id;
   var restaurant_name = req.body.restaurant_name;
-  var country = req.body.country;
   var people = req.body.people;
   var date = req.body.date;
   var time = req.body.time;
-  
+
   // Create Reservation Object
   var newTableBooking = new Reservation({
     name: name,
@@ -51,27 +49,26 @@ router.post('/restaurants/r/book/', function(req, res, next) {
     email: email,
     restaurant_id: restaurant_id,
     restaurant_name: restaurant_name,
-    country: country,
     people: people,
     date: date,
     time: time
   });
-  
+
   // Save in Database
   Reservation.createBooking(newTableBooking, function(err, reserved) {
     if(err){
       console.log(err);
     }
-    
-    res.location('/reservations');
-    res.redirect('/reservations');
-    
+
+    // res.location('/restaurant/');
+    // res.redirect('/restaurant/');
+
   });
 })
 
 
 // Update the reservation
-router.put('/', function(req, res, next) {
+router.put('/restaurants/r/booked/', function(req, res, next) {
   var id = req.body.id;
   var data = {
       people: req.body.people,
@@ -85,28 +82,28 @@ router.put('/', function(req, res, next) {
     if(err){
       console.log(err);
     }
-    
-    res.location('/reservations');
-    res.redirect('/reservations');
-    
+
+    res.location('/restaurant');
+    res.redirect('/restaurant');
+
   });
 });
 
 
 // Delete Reservation Table
-router.delete('/:id', function(req, res, next) {
+router.delete('/restaurants/list/summary/:id', function(req, res, next) {
   var id = req.params.id;
-  
+
   // removing Reservation
   Reservation.removeReservation(id, function(err, reservationTable) {
     // catch if there is an error
     if(err){
       console.log(err);
     }
-    
-    res.location('/reservations');
-    res.redirect('/reservations');
-  
+
+    // res.location('/restaurant');
+    // res.redirect('/restaurant');
+
   });
 });
 

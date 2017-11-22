@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./img/favicon.ico">
 
-    <title>Find Restaurant</title>
+    <title>Finder Apps</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -17,11 +17,11 @@
     <style>
       @import url('https://fonts.googleapis.com/css?family=Anton');
     </style>
-    
+
   </head>
 
   <body>
-    
+
     <div class="container">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -33,39 +33,39 @@
               <span class="icon-bar"></span>
             </button>
             <!-- <a class="navbar-brand" href="#"> -->
-              <h3 class="text-logo">Find Restaurant</h3>
+              <h3 class="text-logo">Finder Apps</h3>
             <!-- </a> -->
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-          
+
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#/city">Home <span class="sr-only">(current)</span></a></li>
+              <li><a href="#/city">Home <span class="sr-only">(current)</span></a></li>
+              <li><a href="#/restaurants/list/summary">Summary</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
 
       <div ng-view></div>
-      
-    
+
+
       <footer class="footer">
         <hr />
         <p>&copy; 2017 Assignment</p>
       </footer>
-        
+
     </div> <!-- /container -->
 
-    
+
     <!-- AngularJs -->
     <script src="./lib/angular.min.js"></script>
     <script src="./lib/angular-route.min.js"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
     <script src="./index.js"></script>
     <script src="/controllers/reservations_controller.js"></script>
-    
+
   </body>
 </html>
-
